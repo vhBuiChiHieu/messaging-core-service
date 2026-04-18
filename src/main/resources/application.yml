@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: base
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  application:
+    name: base-local
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  application:
+    name: base-dev
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  application:
+    name: base-prod

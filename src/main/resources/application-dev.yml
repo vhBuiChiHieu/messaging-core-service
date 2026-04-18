@@ -1,0 +1,10 @@
+app:
+  env: dev
+logging:
+  level:
+    root: INFO
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true

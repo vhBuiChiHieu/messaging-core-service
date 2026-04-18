@@ -1,0 +1,10 @@
+app:
+  env: prod
+logging:
+  level:
+    root: WARN
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false

@@ -1,0 +1,5 @@
+CREATE TABLE app_user (
+    id BIGINT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    created_at TIMESTAMP NOT NULL
+);
