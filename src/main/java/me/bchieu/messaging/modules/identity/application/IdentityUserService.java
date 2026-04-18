@@ -9,8 +9,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/** Application service for identity user operations. */
 @Service
+/** Application service for identity user operations. */
 public class IdentityUserService {
   private final UserRepository userRepository;
 
@@ -37,6 +37,35 @@ public class IdentityUserService {
               null,
               null,
               null));
+    } catch (DataIntegrityViolationException exception) {
+      throw new IdentityUserAlreadyExistsException(command.username());
+    }
+  }
+
+  /** Updates an existing identity user. */
+  @Transactional
+  public User update(UUID userId, UpdateUserCommand command) {
+    User existingUser =
+        userRepository
+            .findById(userId)
+            .orElseThrow(() -> new IdentityUserNotFoundException(userId));
+
+    if (!existingUser.username().equals(command.username())
+        && userRepository.existsByUsername(command.username())) {
+      throw new IdentityUserAlreadyExistsException(command.username());
+    }
+
+    try {
+      return userRepository.save(
+          new User(
+              existingUser.id(),
+              command.username(),
+              command.displayName(),
+              command.avatarUrl(),
+              command.status(),
+              existingUser.version(),
+              existingUser.createdAt(),
+              existingUser.updatedAt()));
     } catch (DataIntegrityViolationException exception) {
       throw new IdentityUserAlreadyExistsException(command.username());
     }
