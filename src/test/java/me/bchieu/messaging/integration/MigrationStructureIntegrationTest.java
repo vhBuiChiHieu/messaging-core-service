@@ -9,11 +9,16 @@ class MigrationStructureIntegrationTest {
 
   @Test
   void shouldExposeTimestampBasedInitialMigration() {
-    URL migration =
+    URL initialSchemaMigration =
         getClass()
             .getClassLoader()
             .getResource("db/migration/V20260418_0001__init_message_service_schema.sql");
+    URL appUserMigration =
+        getClass()
+            .getClassLoader()
+            .getResource("db/migration/V20260418_0002__create_app_user_table.sql");
 
-    assertThat(migration).isNotNull();
+    assertThat(initialSchemaMigration).isNotNull();
+    assertThat(appUserMigration).isNotNull();
   }
 }
