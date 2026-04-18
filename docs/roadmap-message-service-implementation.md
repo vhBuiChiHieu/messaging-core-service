@@ -85,52 +85,64 @@ Dựng nền tảng kỹ thuật đúng để toàn bộ module business về sa
 ### 5.4 Epic và task list
 
 #### Epic 0.1 - Rebrand và làm sạch base project
-- [ ] Đổi `artifactId`, `name`, `description` trong `pom.xml` sang tên service thực tế.
-- [ ] Đổi `spring.application.name` trong các profile config.
-- [ ] Rà soát package root `me.bchieu.base` và quyết định có đổi sang package domain chính thức hay không.
-- [ ] Cập nhật `README.md` để mô tả đúng mục tiêu của message-service.
-- [ ] Xóa hoặc đánh dấu rõ `modules/sample` là temporary reference.
-- [ ] Đánh giá `modules/auth` hiện tại: giữ làm skeleton hay thay bằng auth thật.
+- [x] Đổi `artifactId`, `name`, `description` trong `pom.xml` sang tên service thực tế.
+- [x] Đổi `spring.application.name` trong các profile config.
+- [x] Rà soát package root `me.bchieu.base` và đổi sang package domain chính thức `me.bchieu.messaging`.
+- [x] Cập nhật `README.md` để mô tả đúng mục tiêu của message-service.
+- [x] Xóa `modules/sample` khỏi codebase hiện tại.
+- [x] Loại bỏ `modules/auth` sample để chuẩn bị thay bằng auth thật ở phase sau.
+
+> **Trạng thái thực tế:** Epic này đã hoàn thành trên `master`.
 
 #### Epic 0.2 - Thiết lập persistence thật với MySQL
-- [ ] Thêm dependency cần thiết cho MySQL và Spring Data JPA.
-- [ ] Cấu hình datasource cho local/dev/prod.
-- [ ] Cấu hình connection pool.
-- [ ] Chuẩn hóa strategy migration với Flyway.
+- [x] Thêm dependency cần thiết cho MySQL và Spring Data JPA.
+- [x] Cấu hình datasource cho local/dev/prod.
+- [x] Cấu hình connection pool.
+- [x] Chuẩn hóa strategy migration với Flyway.
 - [ ] Xây dựng convention cho naming schema, table, index, foreign key.
 - [ ] Thay các repository in-memory bằng persistence pattern thật cho module mới.
-- [ ] Chuẩn bị local compose hoặc hướng dẫn local environment để chạy MySQL ổn định.
+- [x] Chuẩn bị local compose hoặc hướng dẫn local environment để chạy MySQL ổn định.
+
+> **Trạng thái thực tế:** Persistence foundation đã có, nhưng convention schema chi tiết và repository thật cho domain module mới vẫn là việc phase sau.
 
 #### Epic 0.3 - Chuẩn hóa cấu trúc module cho domain messaging
-- [ ] Tạo skeleton module: `identity`, `conversation`, `message`, `media`, `integration`, `realtime`, `notification`.
-- [ ] Xác định rõ package `api`, `application`, `domain`, `infrastructure` cho từng module.
+- [x] Tạo skeleton module: `identity`, `conversation`, `message`, `media`, `integration`, `realtime`, `notification`.
+- [x] Xác định rõ package `api`, `application`, `domain`, `infrastructure` cho từng module.
 - [ ] Xác định module nào là core business và module nào là supporting.
-- [ ] Viết package marker hoặc convention test để bảo vệ boundary module.
-- [ ] Rà soát `user`, `role`, `file` package marker hiện có để quyết định tái sử dụng hay thay thế.
+- [x] Viết package marker hoặc convention test để bảo vệ boundary module.
+- [x] Rà soát `user`, `role`, `file` package marker hiện có và loại bỏ phần `me.bchieu.base` còn sót.
+
+> **Trạng thái thực tế:** Skeleton và smoke-test boundary đã có; phần phân loại core/supporting nên chốt rõ hơn trước khi vào Phase 1.
 
 #### Epic 0.4 - Security foundation
 - [ ] Chốt cơ chế JWT cho end-user.
 - [ ] Chốt cơ chế API key hoặc integration token cho partner.
 - [ ] Thiết kế security filter chain theo loại request.
-- [ ] Thiết kế rule phân tách endpoint public, authenticated user, integration endpoint.
+- [x] Thiết kế rule phân tách endpoint public, authenticated user, integration endpoint.
 - [ ] Chuẩn hóa mã lỗi auth/forbidden/validation.
-- [ ] Chuẩn bị util hoặc abstraction cho current principal/current integration app.
+- [x] Chuẩn bị util hoặc abstraction cho current principal/current integration app.
+
+> **Trạng thái thực tế:** Security seam và endpoint classification đã sẵn sàng; cơ chế auth thật vẫn chưa được triển khai ở Phase 0.
 
 #### Epic 0.5 - Technical baseline for delivery
 - [ ] Thiết lập config logging phù hợp cho local/dev/prod.
 - [ ] Bổ sung actuator config cần thiết.
 - [ ] Rà soát health endpoint.
-- [ ] Chuẩn hóa API response envelope nếu cần.
-- [ ] Chuẩn hóa global exception mapping theo domain error.
-- [ ] Bổ sung integration test tối thiểu cho startup + migration + docs exposure.
+- [x] Chuẩn hóa API response envelope nếu cần.
+- [x] Chuẩn hóa global exception mapping theo domain error.
+- [x] Bổ sung integration test tối thiểu cho startup + migration + docs exposure.
 - [ ] Thiết lập test fixture/convention cho module test về sau.
 
+> **Trạng thái thực tế:** Verification baseline đã hoàn tất với `mvn verify` xanh; logging/actuator/test fixture vẫn còn có thể làm sâu hơn.
+
 ### 5.5 Exit criteria
-- Ứng dụng chạy được với MySQL thật ở local.
-- Flyway migrate thành công trên schema sạch.
-- Đã có skeleton module messaging và không còn phụ thuộc vào sample flow để triển khai domain thật.
-- Có security foundation đủ để bắt đầu Phase 1.
-- `mvn verify` chạy ổn định sau các thay đổi nền tảng.
+- [x] Ứng dụng chạy được với MySQL thật ở local.
+- [x] Flyway migrate thành công trên schema sạch.
+- [x] Đã có skeleton module messaging và không còn phụ thuộc vào sample flow để triển khai domain thật.
+- [x] Có security foundation tối thiểu đủ để bắt đầu Phase 1.
+- [x] `mvn verify` chạy ổn định sau các thay đổi nền tảng.
+
+> **Đánh giá hiện tại:** Phase 0 về mặt implementation nền tảng đã hoàn thành. Các mục còn mở chủ yếu là quyết định chi tiết/convention để làm rõ thêm trước hoặc trong đầu Phase 1.
 
 ### 5.6 Risk / note
 - Nếu bỏ qua Phase 0, toàn bộ feature Phase 1 có nguy cơ phải refactor lớn.
@@ -158,12 +170,19 @@ Hoàn thành bộ năng lực tối thiểu để hệ thống hoạt động nh
 ### 6.4 Epic và task list
 
 #### Epic 1.1 - Identity module
-- [ ] Thiết kế entity/bảng `app_user` mở rộng đúng bài toán messaging.
-- [ ] Bổ sung các trường tối thiểu: username, display_name, avatar_url, status, created_at, updated_at.
-- [ ] Xây dựng domain model và repository cho user.
-- [ ] Xây dựng API hoặc application service cho tra cứu user nội bộ.
-- [ ] Xây dựng use case tạo/cập nhật user nội bộ nếu cần.
+- [x] Thiết kế entity/bảng `app_user` mở rộng đúng bài toán messaging, dùng `UUID` làm khóa chính nội bộ.
+- [x] Bổ sung các trường tối thiểu: `username`, `display_name`, `avatar_url`, `status`, `version`, `created_at`, `updated_at`.
+- [x] Quy định `username` là unique, bắt buộc và không cho đổi sau khi tạo.
+- [x] Chốt `status` MVP gồm `ACTIVE`, `INACTIVE`, `BLOCKED`.
+- [x] Giai đoạn đầu chỉ lưu `avatar_url` dạng string, chưa liên kết chặt với media module.
+- [x] Xây dựng domain model và repository cho user.
+- [x] Xây dựng API create/update nội bộ cho user.
+- [x] Xây dựng API hoặc application service cho tra cứu user nội bộ theo `id` và `username`.
+- [x] Xây dựng use case tạo/cập nhật user nội bộ.
+- [x] Thêm `version` nội bộ để sẵn sàng dùng optimistic locking annotation ở persistence layer.
 - [ ] Chuẩn hóa mapping giữa security principal và user nội bộ.
+- Thực tế hiện tại: đã có migration `app_user`, JPA persistence, service create/update/get, API create/update/get-by-id/get-by-username, và error coverage cho duplicate username / missing id.
+- Trạng thái verify: các test identity và test suite hiện pass, nhưng `mvn verify` toàn repo vẫn còn bị chặn bởi checkstyle Javadoc pre-existing ngoài scope identity.
 
 #### Epic 1.2 - Integration module
 - [ ] Thiết kế bảng `integration_app`.
