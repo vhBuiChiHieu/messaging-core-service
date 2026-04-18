@@ -1,6 +1,6 @@
 spring:
   application:
-    name: base
+    name: message-service
 
 ---
 spring:
@@ -8,7 +8,7 @@ spring:
     activate:
       on-profile: local
   application:
-    name: base-local
+    name: message-service-local
 
 ---
 spring:
@@ -16,7 +16,7 @@ spring:
     activate:
       on-profile: dev
   application:
-    name: base-dev
+    name: message-service-dev
 
 ---
 spring:
@@ -24,4 +24,13 @@ spring:
     activate:
       on-profile: prod
   application:
-    name: base-prod
+    name: message-service-prod
+
+app:
+  security:
+    public-endpoints:
+      - /actuator/health
+    user-endpoints:
+      - /api/v1/**
+    integration-endpoints:
+      - /integration/v1/**

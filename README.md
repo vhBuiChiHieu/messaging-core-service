@@ -1,13 +1,11 @@
-# Base Service Modular Monolith
+# Message Service Foundation
 
-Java 21 + Spring Boot 3.5.x modular monolith base template.
+Java 21 + Spring Boot 3.5.x backend foundation for the `message-service` modular monolith.
 
 ## Project structure
 - `common/`: shared cross-cutting components.
 - `infrastructure/`: shared technical adapters.
 - `modules/`: business modules.
-- `modules/sample`: sample create-flow module for reference after cloning.
-- `modules/auth`: simple auth sample flow, not production-ready auth.
 
 ## Run locally
 ```bash
@@ -22,7 +20,6 @@ mvn verify
 This runs compile, tests, and code quality checks.
 
 ## Documentation
-- `docs/handbook-trien-khai-du-an-tu-base-service.md`
 - `docs/architecture.md`
 - `docs/api-convention.md`
 - `docs/database-convention.md`

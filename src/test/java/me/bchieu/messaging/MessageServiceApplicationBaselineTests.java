@@ -1,4 +1,4 @@
-package me.bchieu.base;
+package me.bchieu.messaging;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -7,7 +7,7 @@ import org.springframework.boot.SpringBootVersion;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BaseApplicationTests {
+class MessageServiceApplicationBaselineTests {
 
   @Test
   void contextLoads() {}
