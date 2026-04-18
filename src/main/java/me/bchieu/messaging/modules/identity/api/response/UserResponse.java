@@ -1,4 +1,4 @@
-package me.bchieu.messaging.modules.identity.api;
+package me.bchieu.messaging.modules.identity.api.response;
 
 import java.time.Instant;
 import java.util.UUID;
