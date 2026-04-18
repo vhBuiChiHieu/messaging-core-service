@@ -1,0 +1,4 @@
+CREATE TABLE schema_version_lock (
+    id BIGINT PRIMARY KEY,
+    created_at TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+);
